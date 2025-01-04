@@ -3,3 +3,4 @@
 *.zip
 .vs
 **/staging/
+**/*.user

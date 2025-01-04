@@ -32,7 +32,7 @@ namespace TooManyEmotes.Audio
 
         public static bool muteEmoteAudio = false;
         public static bool emoteOnlyMode = false;
-        public static bool dmcaFreeMode = ConfigSettings.dmcaFreeMode.Value;
+        public static bool dmcaFreeMode = true;
         public static float emoteVolumeMultiplier = 1;
 
 
@@ -51,7 +51,6 @@ namespace TooManyEmotes.Audio
             ES3.Save("TooManyEmotes.EmoteAudioVolume", emoteVolumeMultiplier, SaveManager.TooManyEmotesSaveFileName);
             ES3.Save("TooManyEmotes.MuteEmoteAudio", muteEmoteAudio, SaveManager.TooManyEmotesSaveFileName);
             ES3.Save("TooManyEmotes.EmoteOnlyMode", emoteOnlyMode, SaveManager.TooManyEmotesSaveFileName);
-            ES3.Save("TooManyEmotes.DmcaFreeMode", dmcaFreeMode, SaveManager.TooManyEmotesSaveFileName);
         }
 
 
@@ -67,8 +66,6 @@ namespace TooManyEmotes.Audio
                     ES3.DeleteKey("TooManyEmotes.MuteEmoteAudio");
                 if (ES3.KeyExists("TooManyEmotes.EmoteOnlyMode"))
                     ES3.DeleteKey("TooManyEmotes.EmoteOnlyMode");
-                if (ES3.KeyExists("TooManyEmotes.DmcaFreeMode"))
-                    ES3.DeleteKey("TooManyEmotes.DmcaFreeMode");
             }
             catch
             {
@@ -77,7 +74,6 @@ namespace TooManyEmotes.Audio
                     ES3.DeleteKey("TooManyEmotes.EmoteAudioVolume");
                     ES3.DeleteKey("TooManyEmotes.MuteEmoteAudio");
                     ES3.DeleteKey("TooManyEmotes.EmoteOnlyMode");
-                    ES3.DeleteKey("TooManyEmotes.DmcaFreeMode");
                 } catch { }
             }
 
@@ -86,7 +82,7 @@ namespace TooManyEmotes.Audio
                 emoteVolumeMultiplier = ES3.Load("TooManyEmotes.EmoteAudioVolume", SaveManager.TooManyEmotesSaveFileName, 1.0f);
                 muteEmoteAudio = ES3.Load("TooManyEmotes.MuteEmoteAudio", SaveManager.TooManyEmotesSaveFileName, false);
                 emoteOnlyMode = ES3.Load("TooManyEmotes.EmoteOnlyMode", SaveManager.TooManyEmotesSaveFileName, false);
-                dmcaFreeMode = ES3.Load("TooManyEmotes.DmcaFreeMode", SaveManager.TooManyEmotesSaveFileName, ConfigSettings.dmcaFreeMode.Value);
+                dmcaFreeMode = ConfigSettings.dmcaFreeMode.Value;
             }
             catch (Exception e)
             {
@@ -94,13 +90,12 @@ namespace TooManyEmotes.Audio
                 emoteVolumeMultiplier = 1;
                 muteEmoteAudio = false;
                 emoteOnlyMode = false;
-                dmcaFreeMode = ConfigSettings.dmcaFreeMode.Value;
+                dmcaFreeMode = true;
                 try
                 {
                     ES3.DeleteKey("TooManyEmotes.EmoteAudioVolume", SaveManager.TooManyEmotesSaveFileName);
                     ES3.DeleteKey("TooManyEmotes.MuteEmoteAudio", SaveManager.TooManyEmotesSaveFileName);
                     ES3.DeleteKey("TooManyEmotes.EmoteOnlyMode", SaveManager.TooManyEmotesSaveFileName);
-                    ES3.DeleteKey("TooManyEmotes.DmcaFreeMode", SaveManager.TooManyEmotesSaveFileName);
                 }
                 catch { LogErrorVerbose("Failed to reset audio preferences. I recommend deleting this file: \"" + SaveManager.TooManyEmotesSaveFileName + "\" located at this path: \"C:\\Users\\YOUR_USER\\AppData\\LocalLow\\ZeekerssRBLX\\Lethal Company\""); }
             }
