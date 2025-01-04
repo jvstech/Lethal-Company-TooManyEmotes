@@ -3,7 +3,6 @@ using GameNetcodeStuff;
 using HarmonyLib;
 using MoreCompany;
 using MoreCompany.Cosmetics;
-using AdvancedCompany.Cosmetics;
 using System;
 using System.Collections.Generic;
 using System.Linq;

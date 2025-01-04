@@ -211,7 +211,7 @@ namespace TooManyEmotes
             {
                 allUnlockableEmotes.Sort((item1, item2) => string.Compare(item1.displayName, item2.displayName, true, defaultSortCulture));
             }
-            catch (Exception e)
+            catch
             {
                 if (ConfigSettings.verboseLogs.Value)
                     LogWarningVerbose("Failed to apply default emote sort. Reverting to original sort method.");
